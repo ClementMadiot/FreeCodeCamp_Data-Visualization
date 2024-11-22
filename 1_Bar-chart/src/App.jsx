@@ -108,10 +108,11 @@ function App() {
     // Add mousemove event listener to update tooltip position
     d3.select("article").on("mousemove", updateTooltip);
   };
-
+  
   // Remove the mousemove event listener when the mouse leaves the element
   const handleMouseOut = () => {
     d3.select("article").on("mousemove", null);
+    d3.select("#tooltip").remove();
   };
 
   // Attach the event listeners
