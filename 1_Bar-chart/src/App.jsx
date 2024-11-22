@@ -20,6 +20,8 @@ function App() {
     });
 
   const dataArr = (arr) => {
+    console.log(arr.data);
+    
     // create X and Y scales
     const xScale = d3
       .scaleUtc()
@@ -41,22 +43,38 @@ function App() {
     svg.attr("width", width).attr("height", height);
 
     // Create or select the g element for the x-axis
-    const Xaxis = svg.select(".x-axis").empty()
-      ? svg.append("g").attr("class", "x-axis")
+    const Xaxis = svg.select("#x-axis").empty()
+      ? svg.append("g").attr("id", "x-axis")
       : svg.select(".x-axis");
 
     Xaxis.attr("transform", `translate(0,${height - marginBottom})`).call(
       d3.axisBottom(xScale)
-    );
+    )
+    .attr("class", "tick");
 
     // Create or select the g element for the y-axis
-    const Yaxis = svg.select(".y-axis").empty()
-      ? svg.append("g").attr("class", "y-axis")
+    const Yaxis = svg.select("#y-axis").empty()
+      ? svg.append("g").attr("id", "y-axis")
       : svg.select(".y-axis");
 
     Yaxis.attr("transform", `translate(${marginLeft},0)`).call(
       d3.axisLeft(yScale)
-    );
+    )
+    .attr("class", "tick");
+
+    // Create the bars
+    svg.selectAll("rect")
+    .data(arr.data)
+    .enter()
+    .append("rect")
+    .attr("data-date", (d) => d[0])
+    .attr("data-gdp", (d) => d[1])
+    .attr("class", "bar")
+    .attr("x", (d) => xScale(new Date(d[0])))
+    .attr("y", (d) => yScale(d[1]))
+    .attr("width", 3)
+    .attr("height", d => height - marginBottom - yScale(d[1]))
+    .attr("fill", "#60a5fa")
   };
 
   return (
