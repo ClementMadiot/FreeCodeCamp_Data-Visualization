@@ -1,4 +1,3 @@
-# FreeCodeCamp_Data-Visualization
 <div align="center" class="container">
 <div align="center">
   <img alt="FreeCodeCamp" src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg">
