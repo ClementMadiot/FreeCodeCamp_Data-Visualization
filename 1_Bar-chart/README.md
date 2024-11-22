@@ -20,6 +20,8 @@ First project FreeCodeCamp to valid the certification "Data Visualization"
 
 **User Story :**
 
+# Content
+
 - User Story #1: My chart should have a title with a corresponding id="title". ✅
 
 - User Story #2: My chart should have a g element x-axis with a corresponding id="x-axis". ✅
@@ -42,9 +44,11 @@ First project FreeCodeCamp to valid the certification "Data Visualization"
 
 - User Story #11: The data-gdp attribute and its corresponding .bar element should align with the corresponding value on the y-axis. ✅
 
+# Tooltip Tests
+
 - User Story #12: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area.
 
-- User Story #13: My tooltip should have a data-date property that corresponds to the data-date of the active area.
+- User Story #13: My tooltip should have a data-date property that corresponds to the data-date of the active area. ✅
 
 
 ## <br /> <a name="tech-stack">🛠 Technology Used</a>

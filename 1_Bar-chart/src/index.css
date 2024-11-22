@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --tooltip:#b0c4de;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -22,3 +20,30 @@
 * {
   box-sizing: border-box;
 }
+
+
+  .tooltip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #b0c4de;
+    padding: 2px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    pointer-events: none;
+    
+    width: 190px;
+    height: 100px;
+    /* top: 200px;
+    right: 110px; */
+    transform: translateX(60px);
+  }
+
+  #overlay{
+    position: absolute;
+    background: #fff;
+    pointer-events: none;
+    transform: translateX(60px);
+  }
