@@ -20,7 +20,7 @@ First project FreeCodeCamp to valid the certification "Data Visualization"
 
 **User Story :**
 
-- User Story #1: My chart should have a title with a corresponding id="title".
+- User Story #1: My chart should have a title with a corresponding id="title". ✅
 
 - User Story #2: My chart should have a g element x-axis with a corresponding id="x-axis".
 
