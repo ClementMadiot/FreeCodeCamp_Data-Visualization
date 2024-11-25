@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://fcc-clock-cm.netlify.app/" target="_blanck"><img src="./public/clock-validation.JPG" alt="Clock"></a>
+  <a href="https://bar-chart-cm.netlify.app/" target="_blanck"><img src="./public/bar-chart.png" alt="bar chart"></a>
    <div>
     <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
     <img src="https://img.shields.io/badge/-Vite-black?style=for-the-badge&logoColor=white&logo=vite&color=646CFF" alt="vite" />

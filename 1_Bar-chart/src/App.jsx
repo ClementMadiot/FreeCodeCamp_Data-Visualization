@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-// import { useEffect } from "react";
 
 const urlGDP =
   "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json";
@@ -75,10 +74,9 @@ function App() {
       .attr("fill", "#60a5fa")
       .on("mouseover", (e, d) => handleMouseOver(e, d));
   };
-
   const handleMouseOver = (e, d) => {
     // Check if d is undefined
-    if (typeof d === 'undefined') return; // Exit the function early
+    if (typeof d === "undefined") return; // Exit the function early
 
     const updateTooltip = (e) => {
       const x = e.clientX;
@@ -108,7 +106,7 @@ function App() {
     // Add mousemove event listener to update tooltip position
     d3.select("article").on("mousemove", updateTooltip);
   };
-  
+
   // Remove the mousemove event listener when the mouse leaves the element
   const handleMouseOut = () => {
     d3.select("article").on("mousemove", null);
@@ -125,7 +123,7 @@ function App() {
       <div id="title" className="mx-auto text-3xl text-blue-400">
         United States GDP
       </div>
-      <article className="ml-24" onMouseMove={handleMouseOver} />
+      <article className="mx-auto" onMouseMove={handleMouseOver} />
     </section>
   );
 }
