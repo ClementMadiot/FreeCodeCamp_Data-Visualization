@@ -50,11 +50,18 @@ First project FreeCodeCamp to valid the certification "Data Visualization"
 
 - User Story #13: My tooltip should have a data-date property that corresponds to the data-date of the active area. ✅
 
+# Dataset
+
+> Dataset to complete this project: https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json
+
 
 ## <br /> <a name="tech-stack">🛠 Technology Used</a>
 
 - [TailwindCSS](https://tailwindcss.com/docs/installation)
   Tailwind CSS is a valuable tool for developers who want to build modern, responsive, and visually appealing websites without sacrificing development speed.
+
+- [D3.js](https://www.npmjs.com/package/d3)
+D3 (or D3.js) is a free, open-source JavaScript library for visualizing data. Its low-level approach built on web standards offers unparalleled flexibility in authoring dynamic, data-driven graphics.
 
 ## <br /> <a name="launch-app">🚀 Launch App</a>
 

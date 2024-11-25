@@ -21,6 +21,8 @@ function App() {
 
   const dataArr = (arr) => {
     //* create X and Y scales
+    console.log(arr.data);
+    
     const xScale = d3
       .scaleUtc()
       .domain([
