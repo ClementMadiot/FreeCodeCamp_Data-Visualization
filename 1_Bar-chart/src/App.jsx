@@ -34,7 +34,7 @@ function App() {
       .domain([0, d3.max(arr.data, (d) => d[1])])
       .range([height - marginBottom, marginTop]);
 
-    //* create svg
+    // create svg
     const svg = d3.select("article").select("svg").empty()
       ? d3.select("article").append("svg")
       : d3.select("article").select("svg");
@@ -74,6 +74,8 @@ function App() {
       .attr("fill", "#60a5fa")
       .on("mouseover", (e, d) => handleMouseOver(e, d));
   };
+
+
   const handleMouseOver = (e, d) => {
     // Check if d is undefined
     if (typeof d === "undefined") return; // Exit the function early
@@ -81,8 +83,6 @@ function App() {
     const updateTooltip = (e) => {
       const x = e.clientX;
       const y = e.clientY;
-      // console.log("Mouse coordinates:", x, y);
-      // console.log("Data:", d); // Log the data to check its format
 
       // create the tooltip
       const tooltip = d3.select("article").select("#tooltip").empty()
@@ -102,28 +102,19 @@ function App() {
 
     // Initial tooltip creation
     updateTooltip(e);
-
-    // Add mousemove event listener to update tooltip position
-    d3.select("article").on("mousemove", updateTooltip);
   };
 
-  // Remove the mousemove event listener when the mouse leaves the element
+  // Remove the tooltip when the mouse leaves the chart
   const handleMouseOut = () => {
-    d3.select("article").on("mousemove", null);
-    d3.select("#tooltip").remove();
-  };
-
-  // Attach the event listeners
-  d3.selectAll("rect")
-    .on("mouseover", (e, d) => handleMouseOver(e, d))
-    .on("mouseout", handleMouseOut);
+    d3.select("article").select("#tooltip").remove();
+  }
 
   return (
     <section className="flex flex-col mt-6 relative">
       <div id="title" className="mx-auto text-3xl text-blue-400">
         United States GDP
       </div>
-      <article className="mx-auto" onMouseMove={handleMouseOver} />
+      <article className="mx-auto" onMouseMove={handleMouseOver} onMouseOut={handleMouseOut} />
     </section>
   );
 }
