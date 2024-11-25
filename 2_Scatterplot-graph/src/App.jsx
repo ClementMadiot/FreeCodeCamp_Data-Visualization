@@ -6,7 +6,7 @@ const height = 630;
 const marginTop = 20;
 const marginRight = 20;
 const marginBottom = 30;
-const marginLeft = 40;
+const marginLeft = 80;
 
 export default function App() {
   const ReferenceData = () => {
@@ -24,7 +24,7 @@ export default function App() {
     // create X scale
     const xScale = d3
       .scaleLinear()
-      .domain([d3.min(arr, (d) => d.Year), d3.max(arr, (d) => d.Year)])
+      .domain([d3.min(arr, (d) => d.Year - 1), d3.max(arr, (d) => d.Year)])
       .range([marginLeft, width - marginRight]);
 
     // Parse the Time values into Date objects
@@ -36,20 +36,32 @@ export default function App() {
     // create Y scale
     const yScale = d3
       .scaleLinear()
-      .domain([d3.min(arr, (d) => d.Time), d3.max(arr, (d) => d.Time)])
+      .domain([d3.max(arr, (d) => d.Time), d3.min(arr, (d) => d.Time)])
       .range([height - marginBottom, marginTop]);
 
     // svg
     const svg = d3.select("#scatter-plot").select("svg").empty()
       ? d3.select("#scatter-plot").append("svg")
       : d3.select("#scatter-plot").select("svg");
+    svg.attr("width", width).attr("height", height);
+    // label y-axis
     svg
-      .attr("width", width)
-      .attr("height", height)
+      .append("text")
+      .attr("x", -240)
+      .attr("y", 30)
+      .attr("transform", "rotate(-90)")
+      .attr("class", "text")
+      .text("Time in Minutes");
+    // circles
+    svg
       .selectAll("circle")
       .data(arr)
       .enter()
-
+      .append("circle")
+      .attr("class", "dot")
+      .attr("cx", (d) => xScale(new Date(d.Year)))
+      .attr("cy", (d) => yScale(d.Time))
+      .attr("r", 5);
 
     // Add x-axis
     svg
@@ -68,8 +80,8 @@ export default function App() {
 
   ReferenceData();
   return (
-    <div id="scatter-plot" className="flex flex-col mt-6 ">
-      <h1 id="title" className="mx-auto">
+    <div id="scatter-plot" className="flex items-center flex-col mt-6 text-center ">
+      <h1 id="title" className="text-3xl ml-24 ">
         Doping in Professional Bicycle Racing
       </h1>
     </div>

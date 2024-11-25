@@ -23,6 +23,7 @@
     background-color: #ffffff;
   }
 }
-* {
-  box-sizing: border-box;
+
+.text {
+  font-size: 1.5rem;
 }
