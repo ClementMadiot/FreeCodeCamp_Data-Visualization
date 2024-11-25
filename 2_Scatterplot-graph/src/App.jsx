@@ -61,7 +61,9 @@ export default function App() {
       .attr("class", "dot")
       .attr("cx", (d) => xScale(new Date(d.Year)))
       .attr("cy", (d) => yScale(d.Time))
-      .attr("r", 5);
+      .attr("r", 5)
+      .attr("data-xvalue", (d) => d.Year)
+      .attr('data-yvalue', (d) => d.Time)
 
     // Add x-axis
     svg
