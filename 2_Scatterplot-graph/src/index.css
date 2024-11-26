@@ -8,8 +8,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #6b6b6b;
+  color: rgba(33, 33, 33, 0.87);
+  background-color: rgba(255, 255, 255, 0.87);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,16 +27,37 @@ svg {
   transform: translate(30px, 240px) rotate(-90deg);
 }
 
-#legend {
+#tooltip {
   position: absolute;
   padding: 10px;
   font-size: 12px;
-  background: lightblue;
+  background: lightsteelblue;
+  color: rgb(18, 18, 18);
   border: none;
   border-radius: 8px;
+  text-align: left;
   pointer-events: none;
   opacity: 0;
+  /* transition: ease-in-out 0.2s; */
+}
 
-  min-height: 75px;
-  min-width: 260px;
+#legend {
+  display: flex;
+  flex-direction: column;
+  transform: translate(0, 250px);
+}
+
+.legend-label {
+  display: flex;
+}
+
+.legend-rect {
+  width: 18px;
+  height: 18px;
+}
+
+.legend-text {
+  color: rgb(18, 18, 18);
+  font-size: 13px;
+  transform: translate(680px, 13px);
 }
