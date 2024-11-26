@@ -59,11 +59,11 @@ export default function App() {
       .enter()
       .append("circle")
       .attr("class", "dot")
-      .attr("cx", (d) => xScale(new Date(d.Year)))
+      .attr("cx", (d) => xScale(d.Year))
       .attr("cy", (d) => yScale(d.Time))
       .attr("r", 5)
       .attr("data-xvalue", (d) => d.Year)
-      .attr('data-yvalue', (d) => d.Time)
+      .attr('data-yvalue', (d) => (new Date(d.Time)).toISOString())
 
     // Add x-axis
     svg

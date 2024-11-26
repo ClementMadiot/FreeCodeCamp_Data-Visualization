@@ -36,7 +36,7 @@ Second project FreeCodeCamp to valid the certification "Data Visualization"
 
 - User Story #7: The data-xvalue and its corresponding dot should align with the corresponding point/value on the x-axis. ✅
 
-- User Story #8: The data-yvalue and its corresponding dot should align with the corresponding point/value on the y-axis. ❌
+- User Story #8: The data-yvalue and its corresponding dot should align with the corresponding point/value on the y-axis. ✅
 
 - User Story #9: I can see multiple tick labels on the y-axis with %M:%S time format. ✅
 
