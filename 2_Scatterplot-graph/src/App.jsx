@@ -15,12 +15,12 @@ export default function App() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        dataArr(data);
+        // console.log(data);
+        createChart(data);
       });
   };
 
-  const dataArr = (arr) => {
+  const createChart = (arr) => {
     // create X scale
     const xScale = d3
       .scaleLinear()
@@ -43,46 +43,77 @@ export default function App() {
     const svg = d3.select("#scatter-plot").select("svg").empty()
       ? d3.select("#scatter-plot").append("svg")
       : d3.select("#scatter-plot").select("svg");
-    svg.attr("width", width).attr("height", height);
-    // label y-axis
-    svg
-      .append("text")
-      .attr("x", -240)
-      .attr("y", 30)
-      .attr("transform", "rotate(-90)")
-      .attr("class", "text")
-      .text("Time in Minutes");
+
     // circles
-    svg
-      .selectAll("circle")
-      .data(arr)
-      .enter()
-      .append("circle")
-      .attr("class", "dot")
-      .attr("cx", (d) => xScale(d.Year))
-      .attr("cy", (d) => yScale(d.Time))
-      .attr("r", 5)
-      .attr("data-xvalue", (d) => d.Year)
-      .attr('data-yvalue', (d) => (new Date(d.Time)).toISOString())
+    const circle = (svg, arr) => {
+      svg
+        .selectAll("circle")
+        .data(arr)
+        .enter()
+        .append("circle")
+        .attr("class", "dot")
+        .attr("cx", (d) => xScale(d.Year))
+        .attr("cy", (d) => yScale(d.Time))
+        .attr("r", 5)
+        .attr("data-xvalue", (d) => d.Year)
+        .attr("data-yvalue", (d) => new Date(d.Time).toISOString())
+        .on("mousemove", (e, d) => handleMouseMove(e, d));
+    };
+    circle(svg, arr);
 
-    // Add x-axis
-    svg
-      .append("g")
-      .attr("id", "x-axis")
-      .attr("transform", `translate(0, ${height - marginBottom})`)
-      .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
+    // x-axis and y-axis
+    const axis = (svg) => {
+      // Add x-axis
+      svg
+        .append("g")
+        .attr("id", "x-axis")
+        .attr("transform", `translate(0, ${height - marginBottom})`)
+        .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
 
-    // Add y-axis
-    svg
-      .append("g")
-      .attr("id", "y-axis")
-      .attr("transform", `translate(${marginLeft}, 0)`)
-      .call(d3.axisLeft(yScale).tickFormat(d3.timeFormat("%M:%S")));
+      // Add y-axis
+      svg
+        .append("g")
+        .attr("id", "y-axis")
+        .attr("transform", `translate(${marginLeft}, 0)`)
+        .call(d3.axisLeft(yScale).tickFormat(d3.timeFormat("%M:%S")));
+    };
+    axis(svg);
+
+    //text
+    svg.append("text").attr("class", "text").text("Time in Minutes");
   };
+  
+  const handleMouseMove = (e, arr) => {
+    const x = e.clientX;
+    const y = e.clientY;
+
+    // Check if the div with id 'legend' already exists
+    let div = d3.select("#scatter-plot").select("#legend");
+    if (div.empty()) {
+      div = d3.select("#scatter-plot").append("div").attr("id", "legend");
+    }
+
+    div
+      .style("opacity", 0.1)
+      .style("left", `${x + 20}px`)
+      .style("top", `${y + -30}px`)
+      .style("opacity", 0.4)
+      .html(`
+        <p>${arr.Name}: ${arr.Nationality}</p>
+        <p>Year: ${arr.Year}, Time: ${arr.Time}</p>
+        <br/>
+        <p>${arr.Doping}</p>
+      `)
+      .attr("data-year", arr.Year)
+  };
+
 
   ReferenceData();
   return (
-    <div id="scatter-plot" className="flex items-center flex-col mt-6 text-center ">
+    <div
+      id="scatter-plot"
+      className="flex items-center flex-col mt-6 text-center "
+    >
       <h1 id="title" className="text-3xl ml-24 ">
         Doping in Professional Bicycle Racing
       </h1>

@@ -16,14 +16,27 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+svg {
+  position: relative;
+  width: 900px;
+  height: 630px;
 }
 
 .text {
   font-size: 1.5rem;
+  transform: translate(30px, 240px) rotate(-90deg);
+}
+
+#legend {
+  position: absolute;
+  padding: 10px;
+  font-size: 12px;
+  background: lightblue;
+  border: none;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+
+  min-height: 75px;
+  min-width: 260px;
 }
