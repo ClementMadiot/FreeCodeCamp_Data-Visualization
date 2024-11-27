@@ -5,14 +5,24 @@ import * as d3 from "d3";
 const width = 900;
 const height = 630;
 const marginTop = 20;
-const marginRight = 20;
 const marginBottom = 30;
+const marginRight = 20;
 const marginLeft = 60;
 
 const monthNames = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-].reverse();  
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+].reverse();
 
 const App = () => {
   const datafetch = () => {
@@ -27,10 +37,10 @@ const App = () => {
 
   const displayMap = (data) => {
     console.log(data);
+    // Remove existing SVG if it exists
+    d3.select("body").select("svg").remove();
 
-    const svg = d3.select("body").append("svg").empty()
-      ? d3.select("body").append("svg")
-      : d3.select("body").select("svg");
+    const svg = d3.select("body").append("svg")
 
     const xSclale = d3
       .scaleLinear()
@@ -43,6 +53,9 @@ const App = () => {
       .range([height - marginBottom, marginTop]);
 
     const axis = (svg) => {
+      svg.select("#x-axis").remove();
+      svg.select("#y-axis").remove();
+
       // Add x-axis
       svg
         .append("g")
@@ -58,6 +71,66 @@ const App = () => {
         .call(d3.axisLeft(yScale));
     };
     axis(svg);
+
+    const rect = (svg, data) => {
+      svg
+        .selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("class", "cell")
+        .attr("x", (d) => xSclale(d.year))
+        .attr("y", (d) => yScale(monthNames[d.month - 1]))
+        .attr("width", 8)
+        .attr("height", 30)
+        .attr("data-month", (d) => d.month - 1)
+        .attr("data-year", (d) => d.year)
+        .attr("data-temp", (d) => d.variance)
+        .attr("fill", (d) => (d.variance > 0 ? "red" : "blue"));
+    };
+    rect(svg, data.monthlyVariance);
+
+    const legend = (svg) => {
+      // Remove existing legend if it exists
+      svg.select("#legend").remove();
+
+      const xValues = [2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8];
+      const colors = d3
+        .scaleLinear()
+        .domain([0, xValues.length - 1])
+        .range(["blue", "red"]);
+
+      const legendGroup = svg
+        .append("g")
+        .attr("id", "legend")
+        .attr("transform", `translate(144, 680)`)
+        .style("color", "black");
+
+      xValues.forEach((x, i) => {
+        legendGroup
+          .append("rect")
+          .attr("x", x * 10) // Adjust the multiplier as needed for spacing
+          .attr("y", 10)
+          .attr("width", 36)
+          .attr("height", 36)
+          .attr("fill", colors(i));
+      });
+
+      xValues.forEach((x, i) => {
+        legendGroup
+          .append("g")
+          .attr("class", "tick")
+          .attr("transform", `translate(${x * 10 + 18}, 50)`)
+          .append("text")
+          .text(x.toFixed(1))
+          .attr("dy", "0.71em")
+          .attr("y", 6)
+          .attr("x", 0)
+          .style("text-anchor", "middle");
+      });
+    };
+
+    legend(svg);
   };
 
   datafetch();

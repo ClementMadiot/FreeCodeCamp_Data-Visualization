@@ -20,8 +20,8 @@ In the Data Visualization Certification, you'll build charts, graphs, and maps t
 You'll also learn about JSON (JavaScript Object Notation), and how to work with data online using an API (Application Programming Interface).
 
 ## <br /> <a name="projects">Projects 🎓</a>
-- [ ] [Visualize Data with a Bar Chart](./1_Bar-chart/)  
-- [ ] [Visualize Data with a Scatterplot Graph](./2_Scatterplot-graph/)  
+- [x] [Visualize Data with a Bar Chart](./1_Bar-chart/)  
+- [x] [Visualize Data with a Scatterplot Graph](./2_Scatterplot-graph/)  
 - [ ] [Visualize Data with a Heat Map](./3_Heat-map/)  
 - [ ] [Visualize Data with a Choropleth Map](./4_Choropleth-map/)  
 - [ ] [Visualize Data with a Treemap Diagram](./5_Treemap-diagram/)  
