@@ -164,7 +164,7 @@ export default function App() {
   return (
     <div
       id="scatter-plot"
-      className="flex items-center flex-col mt-6 text-center "
+      className="flex items-center flex-col mt-6 text-center"
     >
       <h1 id="title" className="text-3xl ml-24 font-semibold mb-4">
         Doping in Professional Bicycle Racing

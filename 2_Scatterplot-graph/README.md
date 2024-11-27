@@ -107,6 +107,8 @@ yarn install
 
 > Once the dependencies are installed, start the project with the command `npm run dev`.
 
+## <br /> <a name="style">🎨 Styling</a>
+
 Global styling are defined using **CSS** & **TailwindCSS**
 
 <details>

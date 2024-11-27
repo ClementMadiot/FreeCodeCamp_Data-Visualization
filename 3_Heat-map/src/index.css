@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-black-200 bg-white font-inter;
+  }
+
+  svg {
+    @apply w-[900px] h-[620px] mx-auto;
+  }
+}
