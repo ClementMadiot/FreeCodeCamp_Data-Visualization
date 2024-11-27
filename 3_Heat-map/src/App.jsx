@@ -2,8 +2,8 @@ import React from "react";
 import * as d3 from "d3";
 
 // dimensions
-const width = 900;
-const height = 630;
+const width = 940;
+const height = 430;
 const marginTop = 20;
 const marginBottom = 30;
 const marginRight = 20;
@@ -40,7 +40,7 @@ const App = () => {
     // Remove existing SVG if it exists
     d3.select("body").select("svg").remove();
 
-    const svg = d3.select("body").append("svg")
+    const svg = d3.select("body").append("svg");
 
     const xSclale = d3
       .scaleLinear()
@@ -74,6 +74,8 @@ const App = () => {
 
     const rect = (svg, data) => {
       svg
+        .append("g")
+        .attr("id", "map")
         .selectAll("rect")
         .data(data)
         .enter()
@@ -94,35 +96,41 @@ const App = () => {
       // Remove existing legend if it exists
       svg.select("#legend").remove();
 
-      const xValues = [2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8];
-      const colors = d3
-        .scaleLinear()
-        .domain([0, xValues.length - 1])
-        .range(["blue", "red"]);
+      const xValues = [
+        { value: 2.8, color: "#4575B4" },
+        { value: 3.9, color: "#74ADD1" },
+        { value: 5.0, color: "#ABD9E9" },
+        { value: 6.1, color: "#E0F3F8" },
+        { value: 7.2, color: "#FFFFBF" },
+        { value: 8.3, color: "#FEE090" },
+        { value: 9.5, color: "#FDAE61" },
+        { value: 10.6, color: "#F46D43" },
+        { value: 11.7, color: "#D73027" },
+        { value: 12.8, color: "#D73027" },
+      ];
 
       const legendGroup = svg
         .append("g")
         .attr("id", "legend")
-        .attr("transform", `translate(144, 680)`)
-        .style("color", "black");
+        .attr("transform", `translate(100, 460)`);
 
       xValues.forEach((x, i) => {
         legendGroup
           .append("rect")
-          .attr("x", x * 10) // Adjust the multiplier as needed for spacing
+          .attr("x", x.value * 40) // Adjust the multiplier as needed for spacing
           .attr("y", 10)
           .attr("width", 36)
           .attr("height", 36)
-          .attr("fill", colors(i));
+          .attr("fill", x.color);
       });
 
-      xValues.forEach((x, i) => {
+      xValues.forEach((x) => {
         legendGroup
           .append("g")
           .attr("class", "tick")
-          .attr("transform", `translate(${x * 10 + 18}, 50)`)
+          .attr("transform", `translate(${x.value * 40 + 15}, 50)`)
           .append("text")
-          .text(x.toFixed(1))
+          .text(x.value.toFixed(1))
           .attr("dy", "0.71em")
           .attr("y", 6)
           .attr("x", 0)
