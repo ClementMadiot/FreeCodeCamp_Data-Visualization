@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="" target="_blanck"><img src="./public" alt="Scatterplot Graph"></a>
+  <a href="https://fcc-scatterplot-graph-cm.netlify.app/" target="_blanck"><img src="./public/validation-Scatterplot-Graph.png" alt="Scatterplot Graph"></a>
    <div>
     <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
     <img src="https://img.shields.io/badge/-Vite-black?style=for-the-badge&logoColor=white&logo=vite&color=646CFF" alt="vite" />
@@ -13,6 +13,8 @@
 - ✨ [Introduction](#introduction)
 - 🛠 [Technology Used](#tech-stack)
 - 🚀 [Launch App](#launch-app)
+- 🎨 [Styling](#style)
+
 
 ## <br /> <a name="introduction">✨ Introduction</a>
 
@@ -46,13 +48,13 @@ Second project FreeCodeCamp to valid the certification "Data Visualization"
 
 - User Story #12: I can see that the range of the y-axis labels are within the range of the actual y-axis data. ✅
 
-- User Story #13: I can see a legend containing descriptive text that has id="legend". ❌
+- User Story #13: I can see a legend containing descriptive text that has id="legend". ✅
 
 # TooltipTests
 
-- User Story #14: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area. ❌
+- User Story #14: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area. ✅
 
-- User Story #15: My tooltip should have a data-year property that corresponds to the data-xvalue of the active area. ❌
+- User Story #15: My tooltip should have a data-year property that corresponds to the data-xvalue of the active area. ✅
 
 # Dataset
 
@@ -104,3 +106,72 @@ yarn install
 ```
 
 > Once the dependencies are installed, start the project with the command `npm run dev`.
+
+Global styling are defined using **CSS** & **TailwindCSS**
+
+<details>
+<summary><code>index.css</code></summary>
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-black-100 bg-white font-inter;
+  }
+  svg {
+    @apply relative w-[900px] h-[630px];
+  }
+}
+
+@layer utilities {
+  .text {
+    @apply text-2xl translate-x-8 translate-y-60 rotate-[-90deg];
+  }
+
+  #tooltip {
+    @apply absolute p-[10px] text-xs rounded-lg text-left pointer-events-none opacity-0 bg-slate-300 text-black-200 border-none;
+  }
+
+  #legend {
+    @apply flex flex-col translate-x-0 translate-y-[250px];
+  }
+
+  .legend-label {
+    @apply flex;
+  }
+
+  .legend-rect {
+    @apply w-4 h-4;
+  }
+
+  .legend-text {
+    @apply text-black-200 text-xs translate-x-[690px] translate-y-[13px];
+  }
+}
+```
+</details>
+
+<details>
+<summary><code>tailwind.config.js</code></summary>
+
+````cjs
+theme: {
+    extend: {
+      colors:{
+        white: '#ffffffde',
+        black:{
+          100: '#212121de',
+          200: '#121212'
+        }
+      },
+      fontFamily: {
+        'inter': ['Inter', 'system-ui', 'sans-serif'],
+      }
+    },
+  },
+````
+
+</details>

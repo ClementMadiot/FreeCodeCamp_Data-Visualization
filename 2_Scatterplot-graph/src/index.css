@@ -2,62 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(33, 33, 33, 0.87);
-  background-color: rgba(255, 255, 255, 0.87);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-svg {
-  position: relative;
-  width: 900px;
-  height: 630px;
+@layer base {
+  body {
+    @apply text-black-100 bg-white font-inter;
+  }
+  svg {
+    @apply relative w-[900px] h-[630px];
+  }
 }
 
-.text {
-  font-size: 1.5rem;
-  transform: translate(30px, 240px) rotate(-90deg);
-}
+@layer utilities {
+  .text {
+    @apply text-2xl translate-x-8 translate-y-60 rotate-[-90deg];
+  }
 
-#tooltip {
-  position: absolute;
-  padding: 10px;
-  font-size: 12px;
-  background: lightsteelblue;
-  color: rgb(18, 18, 18);
-  border: none;
-  border-radius: 8px;
-  text-align: left;
-  pointer-events: none;
-  opacity: 0;
-  /* transition: ease-in-out 0.2s; */
-}
+  #tooltip {
+    @apply absolute p-[10px] text-xs rounded-lg text-left pointer-events-none opacity-0 bg-slate-300 text-black-200 border-none;
+  }
 
-#legend {
-  display: flex;
-  flex-direction: column;
-  transform: translate(0, 250px);
-}
+  #legend {
+    @apply flex flex-col translate-x-0 translate-y-[250px];
+  }
 
-.legend-label {
-  display: flex;
-}
+  .legend-label {
+    @apply flex;
+  }
 
-.legend-rect {
-  width: 18px;
-  height: 18px;
-}
+  .legend-rect {
+    @apply w-4 h-4;
+  }
 
-.legend-text {
-  color: rgb(18, 18, 18);
-  font-size: 13px;
-  transform: translate(680px, 13px);
+  .legend-text {
+    @apply text-black-200 text-xs translate-x-[690px] translate-y-[13px];
+  }
 }

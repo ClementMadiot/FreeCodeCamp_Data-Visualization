@@ -58,7 +58,8 @@ export default function App() {
         .attr("r", 5)
         .attr("data-xvalue", (d) => d.Year)
         .attr("data-yvalue", (d) => new Date(d.Time).toISOString())
-        .on("mousemove", (e, d) => handleMouseMove(e, d));
+        .on("mousemove", (e, d) => handleMouseMove(e, d))
+        .on("mouseout", handleMouseOut);
     };
     circle(svg, arr);
 
@@ -154,6 +155,10 @@ export default function App() {
       )
       .attr("data-year", arr.Year);
   };
+
+  const handleMouseOut = () => {
+    d3.select("#scatter-plot").select("#tooltip").style("opacity", 0);
+  }
 
   ReferenceData();
   return (
