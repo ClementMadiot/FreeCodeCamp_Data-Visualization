@@ -22,7 +22,7 @@ You'll also learn about JSON (JavaScript Object Notation), and how to work with 
 ## <br /> <a name="projects">Projects 🎓</a>
 - [x] [Visualize Data with a Bar Chart](./1_Bar-chart/)  
 - [x] [Visualize Data with a Scatterplot Graph](./2_Scatterplot-graph/)  
-- [ ] [Visualize Data with a Heat Map](./3_Heat-map/)  
+- [x] [Visualize Data with a Heat Map](./3_Heat-map/)  
 - [ ] [Visualize Data with a Choropleth Map](./4_Choropleth-map/)  
 - [ ] [Visualize Data with a Treemap Diagram](./5_Treemap-diagram/)  
 

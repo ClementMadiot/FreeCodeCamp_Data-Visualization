@@ -128,7 +128,21 @@ Global styling are defined using **CSS** & **TailwindCSS**
 
 @layer base {
   body {
-    @apply text-black-100 bg-white font-inter;
+    @apply text-black-200 bg-white font-inter relative;
+  }
+
+  svg {
+    @apply h-[620px] mx-auto;
+  }
+}
+
+@layer components {
+  #tooltip {
+    @apply absolute bg-black-200/95 shadow-lg rounded-lg p-2 text-white space-y-1 text-center;
+  }
+
+  .cell:hover {
+    @apply stroke-black-200 stroke-[1.3px];
   }
 }
 
