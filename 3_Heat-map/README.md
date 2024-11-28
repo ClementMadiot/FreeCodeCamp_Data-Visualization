@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="" target="_blanck"><img src="./public" alt="Heat Map"></a>
+  <a href="https://fcc-heat-map-cm.netlify.app/" target="_blanck"><img src="./public/validation-Heat-Map.png" alt="Heat Map"></a>
    <div>
     <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
     <img src="https://img.shields.io/badge/-Vite-black?style=for-the-badge&logoColor=white&logo=vite&color=646CFF" alt="vite" />
@@ -40,7 +40,7 @@ Third project FreeCodeCamp to valid the certification "Data Visualization"
 
 - User Story #7: Each cell will have the properties data-month, data-year, data-temp containing their corresponding month, year, and temperature values. ✅
 
-- User Story #8: The data-month, data-year of each cell should be within the range of the data. ❌
+- User Story #8: The data-month, data-year of each cell should be within the range of the data. ✅
 
 - User Story #9: My heat map should have cells that align with the corresponding month on the y-axis. ✅
 
@@ -59,9 +59,9 @@ Third project FreeCodeCamp to valid the certification "Data Visualization"
 
 # TooltipTests
 
-- User Story #16: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area.
+- User Story #16: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area. ✅
 
-- User Story #17: My tooltip should have a data-year property that corresponds to the data-year of the active area.
+- User Story #17: My tooltip should have a data-year property that corresponds to the data-year of the active area. ✅
 
 # Dataset
 

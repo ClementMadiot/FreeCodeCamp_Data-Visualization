@@ -1,16 +1,14 @@
-import React from "react";
 import * as d3 from "d3";
 
 // dimensions
-const width = 940;
+const width = 1400;
 const height = 430;
 const marginTop = 20;
 const marginBottom = 30;
 const marginRight = 20;
 const marginLeft = 60;
 
-//! not a good practive, add if like color in legend. can't have the corresponding number 
-// https://forum.freecodecamp.org/t/visualize-data-with-a-heat-map-bug-on-test-8/583985
+// month names
 const monthNames = [
   "January",
   "February",
@@ -38,14 +36,15 @@ const App = () => {
   };
 
   const displayMap = (data) => {
-    console.log(data);
+    // console.log(data);
     // Remove existing SVG if it exists
     d3.select("body").select("svg").remove();
 
-    const svg = d3.select("body").append("svg");
+    const svg = d3.select("body").append("svg").style('width', width)
 
     const xSclale = d3
       .scaleLinear()
+      // .domain([d3.min(data, (d) => d.year - 1), d3.max(data, (d) => d.year)])
       .domain(d3.extent(data, (d) => d.year))
       .range([marginLeft, width - marginRight]);
 
@@ -63,7 +62,12 @@ const App = () => {
         .append("g")
         .attr("id", "x-axis")
         .attr("transform", `translate(0, ${height - marginBottom})`)
-        .call(d3.axisBottom(xSclale).tickFormat(d3.format("d")));
+        .call(
+          d3
+          .axisBottom(xSclale)
+          .tickFormat(d3.format("d"))
+          .ticks(20)
+        );
 
       // Add y-axis
       svg
@@ -84,8 +88,8 @@ const App = () => {
         .append("rect")
         .attr("class", "cell")
         .attr("x", (d) => xSclale(d.year))
-        .attr("y", (d) => yScale(monthNames[12 - d.month ]))
-        .attr("width", 8)
+        .attr("y", (d) => yScale(monthNames[12 - d.month]))
+        .attr("width", 5)
         .attr("height", 30)
         .attr("data-month", (d) => d.month - 1)
         .attr("data-year", (d) => d.year)
@@ -101,7 +105,9 @@ const App = () => {
           if (8.66 - d.variance >= 5.0) return "#ABD9E9";
           if (8.66 - d.variance >= 3.9) return "#74ADD1";
           return "#4575B4";
-        });
+        })
+        .on("mouseover", (e, data) => handleMouseOver(e, data))
+        .on("mouseout", handleMouseOut);
     };
     rect(svg, data);
 
@@ -152,6 +158,35 @@ const App = () => {
     };
 
     legend(svg);
+  };
+
+  const handleMouseOver = (e, data) => {
+    const splitData = data.variance.toFixed(2);
+    const calculetedData = (8.66 - splitData).toFixed(2);
+
+    const y = e.clientY;
+    const x = e.clientX;
+
+    let tooltip = d3.select("body").select("#tooltip");
+    if (tooltip.empty()) {
+      tooltip = d3.select("body").append("div").attr("id", "tooltip");
+    }
+
+    tooltip
+      .style("left", `${x + -45}px`)
+      .style("top", `${y + -140}px`)
+      .style("opacity", 0.9)
+      .attr("data-year", data.year).html(`
+      <p className="tooltip-year">${data.year} - ${
+      monthNames[12 - data.month]
+    }</p>
+      <p className="tooltip-temp">${splitData}℃</p>
+      <p className="tooltip-temp">${calculetedData}℃</p>
+      `);
+  };
+
+  const handleMouseOut = () => {
+    d3.select("body").select("#tooltip").style("opacity", 0);
   };
 
   datafetch();
