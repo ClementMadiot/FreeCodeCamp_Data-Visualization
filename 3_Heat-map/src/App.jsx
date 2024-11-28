@@ -9,6 +9,8 @@ const marginBottom = 30;
 const marginRight = 20;
 const marginLeft = 60;
 
+//! not a good practive, add if like color in legend. can't have the corresponding number 
+// https://forum.freecodecamp.org/t/visualize-data-with-a-heat-map-bug-on-test-8/583985
 const monthNames = [
   "January",
   "February",
@@ -31,7 +33,7 @@ const App = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        displayMap(data);
+        displayMap(data.monthlyVariance);
       });
   };
 
@@ -44,7 +46,7 @@ const App = () => {
 
     const xSclale = d3
       .scaleLinear()
-      .domain(d3.extent(data.monthlyVariance, (d) => d.year))
+      .domain(d3.extent(data, (d) => d.year))
       .range([marginLeft, width - marginRight]);
 
     const yScale = d3
@@ -82,21 +84,29 @@ const App = () => {
         .append("rect")
         .attr("class", "cell")
         .attr("x", (d) => xSclale(d.year))
-        .attr("y", (d) => yScale(monthNames[d.month - 1]))
+        .attr("y", (d) => yScale(monthNames[12 - d.month ]))
         .attr("width", 8)
         .attr("height", 30)
         .attr("data-month", (d) => d.month - 1)
         .attr("data-year", (d) => d.year)
-        .attr("data-temp", (d) => d.variance)
-        .attr("fill", (d) => (d.variance > 0 ? "red" : "blue"));
+        .attr("data-temp", (d) => 8.66 - d.variance)
+        .attr("fill", (d) => {
+          if (8.66 - d.variance >= 12.8) return "#D73027";
+          if (8.66 - d.variance >= 11.7) return "#D73027";
+          if (8.66 - d.variance >= 10.6) return "#F46D43";
+          if (8.66 - d.variance >= 9.5) return "#FDAE61";
+          if (8.66 - d.variance >= 8.3) return "#FEE090";
+          if (8.66 - d.variance >= 7.2) return "#FFFFBF";
+          if (8.66 - d.variance >= 6.1) return "#E0F3F8";
+          if (8.66 - d.variance >= 5.0) return "#ABD9E9";
+          if (8.66 - d.variance >= 3.9) return "#74ADD1";
+          return "#4575B4";
+        });
     };
-    rect(svg, data.monthlyVariance);
+    rect(svg, data);
 
     const legend = (svg) => {
-      // Remove existing legend if it exists
-      svg.select("#legend").remove();
-
-      const xValues = [
+      const dataTemp = [
         { value: 2.8, color: "#4575B4" },
         { value: 3.9, color: "#74ADD1" },
         { value: 5.0, color: "#ABD9E9" },
@@ -109,12 +119,15 @@ const App = () => {
         { value: 12.8, color: "#D73027" },
       ];
 
+      // Remove existing legend if it exists
+      svg.select("#legend").remove();
+
       const legendGroup = svg
         .append("g")
         .attr("id", "legend")
         .attr("transform", `translate(100, 460)`);
 
-      xValues.forEach((x, i) => {
+      dataTemp.forEach((x, i) => {
         legendGroup
           .append("rect")
           .attr("x", x.value * 40) // Adjust the multiplier as needed for spacing
@@ -124,7 +137,7 @@ const App = () => {
           .attr("fill", x.color);
       });
 
-      xValues.forEach((x) => {
+      dataTemp.forEach((x) => {
         legendGroup
           .append("g")
           .attr("class", "tick")
