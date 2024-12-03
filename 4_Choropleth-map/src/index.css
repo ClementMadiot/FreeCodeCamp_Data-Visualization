@@ -4,7 +4,21 @@
 
 @layer base {
   body {
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    background-color: #ffffffde;
+    color: #242424;
+  }
+}
+
+@layer components {
+  .state {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+  }
+  .counties {
+    fill: none;
+  }
+  .county {
+    fill: #000;
   }
 }

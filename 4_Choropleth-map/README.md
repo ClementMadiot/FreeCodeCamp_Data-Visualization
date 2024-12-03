@@ -24,9 +24,9 @@ Fourth project FreeCodeCamp to valid the certification "Data Visualization"
 
 # Technology Stack
 
-- User Story #1: My choropleth should have a title with a corresponding id="title".
+- User Story #1: My choropleth should have a title with a corresponding id="title". ✅
 
-- User Story #2: My choropleth should have a description element with a corresponding id="description".
+- User Story #2: My choropleth should have a description element with a corresponding id="description". ✅
 
 # Content
 
@@ -65,6 +65,9 @@ Fourth project FreeCodeCamp to valid the certification "Data Visualization"
 
 - [D3.js](https://www.npmjs.com/package/d3)
 D3 (or D3.js) is a free, open-source JavaScript library for visualizing data. Its low-level approach built on web standards offers unparalleled flexibility in authoring dynamic, data-driven graphics.
+
+- [topojson](https://www.npmjs.com/package/topojson)
+TopoJSON is an extension of GeoJSON that encodes topology. Rather than representing geometries discretely, geometries in TopoJSON files are stitched together from shared line segments called arcs.
 
 ## <br /> <a name="launch-app">🚀 Launch App</a>
 
